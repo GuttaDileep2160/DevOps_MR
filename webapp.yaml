@@ -1,0 +1,11 @@
+- name: webapp playbook
+  hosts: all
+  tasks:
+    - name: stop container
+      shell: docker container stop dockeransible
+    - name: remove container
+      shell: docker container rm dockeransible
+    - name: remove docker image
+      shell: docker image rmi gdileep/demo-webapp
+    - name: create new container
+      shell: docker run -itd --name dockeransible -p 9000:80 gdileep/demo-webapp
